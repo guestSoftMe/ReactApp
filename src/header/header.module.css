@@ -1,0 +1,33 @@
+.header{
+    color: #fff;
+    border: 1px solid #ffffff;
+    display: grid;
+    grid-area: h;
+}
+.logins{
+    display: flex;
+    justify-content:space-between;
+    margin: 0 15px;
+    align-items: center;
+}
+.sitebar{
+    color: #fff;
+    width: 100px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.add{
+    color: gold;
+}
+.mar{
+    margin: 0 15px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo img{
+    margin-right: 45px;
+}

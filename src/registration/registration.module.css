@@ -1,0 +1,22 @@
+.reg{
+    margin: 10px auto;
+    text-align: center;
+}
+.reg input{
+    height: 30px;
+    width: 250px;
+    margin: 15px 0;
+}
+.btn{
+    width: 150px;
+    height: 35px;
+    color: white;
+    background: #282c34;
+    box-shadow: 2px 2px 2px 2px #ffffff;
+}
+.col{
+    color: red;
+}
+.errorForm{
+    border: 2px solid red;
+}

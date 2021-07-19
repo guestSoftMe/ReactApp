@@ -1,0 +1,10 @@
+.block{
+    margin:10px 10px;
+}
+.num{
+    margin: 0 5px;
+    cursor: pointer;
+}
+.action{
+    color: red;
+}
