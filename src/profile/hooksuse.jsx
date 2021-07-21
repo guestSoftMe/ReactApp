@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import HooksExp from "./hookExp";
+import obs from './../circles.svg'
 
 function HooksUse(props) {
 
     const [type, setType] = useState('users');
-
     useEffect(() => {
         axios.get(`https://jsonplaceholder.typicode.com/${type}`)
             .then(response => {
@@ -13,6 +14,7 @@ function HooksUse(props) {
     }, [type]);
     return (
         <div style={{margin: '30px 0'}}>
+            <HooksExp/>
             <div>
                 <button onClick={() => setType('users')}>User</button>
                 <button onClick={() => setType('posts')}>Posts</button>
@@ -20,8 +22,12 @@ function HooksUse(props) {
                 <button onClick={() => setType('photos')}>Photos</button>
                 <button onClick={() => setType('comments')}>Comments</button>
             </div>
-            <pre>{JSON.stringify(type, null, 2)}</pre>
-
+            <div>
+            {type.data
+            ?<pre>{JSON.stringify(type, null, 2)}</pre>
+            : <img src={obs} alt=""/>
+            }
+                </div>
         </div>
     )
 }
