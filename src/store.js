@@ -1,11 +1,12 @@
 import React from "react";
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {newtest} from "./reduse/reduserUser";
 import thunk from "redux-thunk";
 import {menuAction} from "./reduse/reduseMenu";
 import { reducer as formReducer } from 'redux-form'
 import {SiteBarRedu} from "./reduse/reduserSitebar";
 import {Hooks} from "./reduse/reduserHooks";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 let reduser = combineReducers({
@@ -16,6 +17,6 @@ let reduser = combineReducers({
     hooks:Hooks
 })
 
-export let store = createStore(reduser,applyMiddleware(thunk))
-
-window.store = store
+export let store = createStore(reduser,composeWithDevTools(
+    applyMiddleware(thunk),
+    ))

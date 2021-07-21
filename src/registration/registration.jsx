@@ -24,7 +24,6 @@ export class Registration extends Component {
 }
 
 let mapStateToProps=(state)=>{
-    console.log('Hello mapStateToProps')
     return{
         login:selectorLogin(state)
     }

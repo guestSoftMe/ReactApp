@@ -50,12 +50,10 @@ export let loginFormPost = (email, password, rememberMe) => (dispatch) => {
             email, password, rememberMe
         })
         .then(response => {
-                console.log(response.data)
             if (response.data.resultCode === 0) {
                 dispatch(loginsthunk())
             } else {
                 if (response.data.messages) {
-                    console.log(response.data)
                     dispatch(stopSubmit('Registr', {_error: response.data.messages}))
                 }
             }

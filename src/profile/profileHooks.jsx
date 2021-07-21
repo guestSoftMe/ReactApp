@@ -19,37 +19,14 @@ const Hooks = (props) => {
     const change = () => {
         stateFunctStatus(refer.current.value)
     }
-    let [count, setCount] = useState(1)
-
-    function clickCount() {
-        return setCount(count + 1)
-
-    }
-
-    useEffect(() => {
-        document.title = `${count}`
-    }, [count])
 
     useEffect(() => {
         let userId = props.match.params.userid
         props.userthunkhooks(userId)
     }, [])
 
-    let inputEl = useRef()
-    let onButtonClick = () => {
-        console.log(inputEl.current.value)
-    }
     return (
         <div>
-            {stateUser &&
-            <div>
-                <input ref={refer} type="text" onChange={change} onBlur={deactive}/>
-                <button onClick={clickCount}>Click</button>
-            </div>
-            }
-            {!stateUser &&
-            <span onClick={clicks}>Ваш статус:Click Me {stateStatus}</span>
-            }
             <div>
                 {props.profile &&
                 <div>{props.profile.fullname}</div>
