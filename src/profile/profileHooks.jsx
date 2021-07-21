@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {profileUserApi} from "../reduse/reduserSitebar";
 import {userthunkhooks} from "../reduse/reduserHooks";
+import HooksUse from "./hooksuse";
 
 
 const Hooks = (props) => {
@@ -41,19 +42,19 @@ const Hooks = (props) => {
     return (
         <div>
             {stateUser &&
-            <input ref={refer} type="text" onChange={change} onBlur={deactive}/>
+            <div>
+                <input ref={refer} type="text" onChange={change} onBlur={deactive}/>
+                <button onClick={clickCount}>Click</button>
+            </div>
             }
             {!stateUser &&
-            <span onClick={clicks}>Ваш статус: {stateStatus}</span>
+            <span onClick={clicks}>Ваш статус:Click Me {stateStatus}</span>
             }
-            <button onClick={clickCount}>Click</button>
             <div>
                 {props.profile &&
                 <div>{props.profile.fullname}</div>
                 }
             </div>
-            <input ref={inputEl} type="text"/>
-            <button onClick={onButtonClick}>Фокус</button>
             <div>
                 {
                     props.profile &&
@@ -64,6 +65,7 @@ const Hooks = (props) => {
                     </div>
                 }
             </div>
+            <HooksUse {...props}/>
         </div>
     )
 }
