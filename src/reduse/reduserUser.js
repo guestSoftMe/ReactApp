@@ -16,17 +16,13 @@ export function newtest(state = initialState, action) {
 
 let userState = (users) => ({type: 'USER-STATE', users})
 
-export let thunkUser = () => (dispatch) => {
-    return axios.get('https://social-network.samuraijs.com/api/1.0/users')
-        .then(response => {
+export let thunkUser = () => async (dispatch) => {
+    let response = await axios.get('https://social-network.samuraijs.com/api/1.0/users')
             dispatch(userState(response.data.items))
-        })
 }
 
 
-export let thunkUserPage = (userId) => (dispatch) => {
-    return axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${userId}&count=10`)
-        .then(response => {
+export let thunkUserPage = (userId) => async (dispatch) => {
+   let response = await axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${userId}&count=10`)
             dispatch(userState(response.data.items))
-        })
 }
