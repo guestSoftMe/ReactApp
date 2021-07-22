@@ -28,7 +28,7 @@ export class Header extends Component {
                         <img src={logo} alt="" style={{width: 50}}/>
                         <div className={h.sitebar}>
                             {this.props.userMenu.map(r => {
-                                return <NavLink key={r.id} to={r.link} className={h.mar} activeClassName={h.add}>{r.name}</NavLink>
+                                return <NavLink key={r.key} to={r.link} className={h.mar} activeClassName={h.add}>{r.name}</NavLink>
                             })}
                         </div>
                     </div>

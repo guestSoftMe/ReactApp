@@ -39,7 +39,7 @@ class User extends PureComponent {
                     ? this.props.usersApi.users.map(item => {
                         return (
                             item.map(r => {
-                                return <div key={r.id} className={u.block}>
+                                return <div key={r.key} className={u.block}>
                                     <NavLink to={'/map/' + r.id}><img src={logouser} style={{width: '50px'}}
                                                                       alt=""/></NavLink>
                                     <div>Id: {r.id}</div>

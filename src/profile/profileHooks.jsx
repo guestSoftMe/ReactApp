@@ -7,19 +7,6 @@ import HooksUse from "./hooksuse";
 
 
 const Hooks = (props) => {
-    let [stateUser, stateFunct] = useState(false)
-    let [stateStatus, stateFunctStatus] = useState('')
-    let clicks = () => {
-        stateFunct(true)
-    }
-    const deactive = () => {
-        stateFunct(false)
-    }
-    let refer = createRef()
-    const change = () => {
-        stateFunctStatus(refer.current.value)
-    }
-
     useEffect(() => {
         let userId = props.match.params.userid
         props.userthunkhooks(userId)
