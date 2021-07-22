@@ -6,13 +6,12 @@ import obs from './../circles.svg'
 const HooksUse = props => {
 
     const [type, setType] = useState('users');
-    useEffect(() => {
-        axios.get(`https://jsonplaceholder.typicode.com/${type}`)
-            .then(response => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect( async() => {
+        let response = await axios.get(`https://jsonplaceholder.typicode.com/${type}`)
                 setType(response)
-            })
     }, [type]);
-    console.log('Hello')
+
     return (
         <div style={{margin: '30px 0'}}>
             <HooksExp {...props}/>
