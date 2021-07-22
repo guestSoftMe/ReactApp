@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import axios from "axios";
 import HooksExp from "./hookExp";
 import obs from './../circles.svg'
 
-function HooksUse(props) {
+const HooksUse = props => {
 
     const [type, setType] = useState('users');
     useEffect(() => {
@@ -12,9 +12,10 @@ function HooksUse(props) {
                 setType(response)
             })
     }, [type]);
+    console.log('Hello')
     return (
         <div style={{margin: '30px 0'}}>
-            <HooksExp/>
+            <HooksExp {...props}/>
             <div>
                 <button onClick={() => setType('users')}>User</button>
                 <button onClick={() => setType('posts')}>Posts</button>
@@ -23,13 +24,13 @@ function HooksUse(props) {
                 <button onClick={() => setType('comments')}>Comments</button>
             </div>
             <div>
-            {type.data
-            ?<pre>{JSON.stringify(type, null, 2)}</pre>
-            : <img src={obs} alt=""/>
-            }
-                </div>
+                {type.data
+                    ? <pre>{JSON.stringify(type, null, 2)}</pre>
+                    : <img src={obs} alt=""/>
+                }
+            </div>
         </div>
     )
 }
 
-export default HooksUse
+export default React.memo(HooksUse)

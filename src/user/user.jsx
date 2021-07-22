@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {thunkUser, thunkUserPage} from "../reduse/reduserUser";
 import u from './user.module.css'
@@ -9,7 +9,7 @@ import logouser from "./../600px-User_icon_3.svg.png"
 import {NavLink, Redirect} from "react-router-dom";
 
 
-class User extends Component {
+class User extends PureComponent {
     componentDidMount() {
         this.props.thunkUser()
     }

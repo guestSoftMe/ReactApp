@@ -7,7 +7,7 @@ import {loginOut, loginsthunk} from "../reduse/reduserSitebar";
 
 export class Header extends Component {
     state = {
-        date: new Date().toLocaleString()
+       date: new Date().toLocaleString()
     }
 
     componentDidMount() {
@@ -28,7 +28,7 @@ export class Header extends Component {
                         <img src={logo} alt="" style={{width: 50}}/>
                         <div className={h.sitebar}>
                             {this.props.userMenu.map(r => {
-                                return <NavLink to={r.link} className={h.mar} activeClassName={h.add}>{r.name}</NavLink>
+                                return <NavLink key={r.id} to={r.link} className={h.mar} activeClassName={h.add}>{r.name}</NavLink>
                             })}
                         </div>
                     </div>
