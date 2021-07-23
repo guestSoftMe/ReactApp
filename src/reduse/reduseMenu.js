@@ -1,9 +1,11 @@
+import axios from "axios";
+
 const initialState = {
     menu: [
         {name: 'User', link: '/user'},
         {name: 'Profile', link: '/map'},
     ],
-    currentNum: 1
+    currentNum: 1,
 }
 
 export function menuAction(state = initialState, action) {

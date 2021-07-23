@@ -1,42 +1,43 @@
-import React, {PureComponent} from "react";
+import React, { useEffect} from "react";
 import {connect} from "react-redux";
 import {thunkUser, thunkUserPage} from "../reduse/reduserUser";
 import u from './user.module.css'
 import classNames from "classnames";
 import {curnum} from "../reduse/reduseMenu";
-import loading from "./../circles.svg"
 import logouser from "./../600px-User_icon_3.svg.png"
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import loading from "../circles.svg"
 
 
-class User extends PureComponent {
-    componentDidMount() {
-        this.props.thunkUser()
+function User(props){
+
+    useEffect(() => {
+        props.thunkUser()
+    }, []);
+
+
+
+    function onClickPage(num){
+        props.thunkUserPage(props.curnum(num).currentNum)
     }
 
-    onClickPage = (num) => {
-        this.props.thunkUserPage(this.props.curnum(num).currentNum)
-    }
-
-    render() {
         let numbers = []
-        for (let i = 1; i <= 10; i++) {
+        let pages = (props.totalCounts/10)/100
+        for (let i = 1; i <= pages; i++) {
             numbers.push(i)
         }
-        if (!this.props.isAuth) {
-            return <Redirect to={'/registration'}/>
-        }
+
         return (
             <div>
                 <div>
-                    {numbers.map(i => {
-                        return <span onClick={() => this.onClickPage(i)}
-                                     className={classNames(u.num, this.props.currentNum === i && u.action)}>{i}</span>
-                    })}
+                        {numbers.map(i => {
+                            return <span onClick={() => onClickPage(i)} className={classNames(u.num, props.currentNum === i && u.action)}>{i}</span>
+
+                        })}
                 </div>
 
-                {this.props.usersApi.isTrue
-                    ? this.props.usersApi.users.map(item => {
+                {props.usersApi.isTrue
+                    ? props.usersApi.users.map(item => {
                         return (
                             item.map(r => {
                                 return <div key={r.key} className={u.block}>
@@ -53,12 +54,12 @@ class User extends PureComponent {
                 }
             </div>
         )
-    }
 }
 
 let mapStateToProps = (state) => {
     return {
         usersApi: state.usersApi,
+        totalCounts:state.usersApi.countpage,
         currentNum: state.userMenu.currentNum,
         isAuth: state.login.data.isAuth
     }

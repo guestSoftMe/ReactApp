@@ -8,7 +8,7 @@ const initialState = {
         id: null,
         isAuth: false
     },
-    profile:null,
+    profile: null,
 }
 
 export function SiteBarRedu(state = initialState, action) {
@@ -18,14 +18,15 @@ export function SiteBarRedu(state = initialState, action) {
                 ...state, data: action.data, isAuth: true
             }
         case "SETPROFILE":
-            return {...state,profile:action.profile}
+            return {...state, profile: action.profile}
         default:
             return state
     }
 }
 
 
-export const profileUser = (profile)=>({type:'SETPROFILE',profile})
+export const profileUser = (profile) => ({type: 'SETPROFILE', profile})
+
 const logins = (login, id, email, isAuth) => ({type: 'Login', data: {login, email, id, isAuth}})
 
 let axlink = axios.create({
@@ -70,9 +71,9 @@ export let loginOut = () => (dispatch) => {
 }
 
 
-export let profileUserApi = (userId)=>(dispatch)=>{
+export let profileUserApi = (userId) => (dispatch) => {
     return axlink.get(`/profile/${userId}`)
-        .then(response=>{
+        .then(response => {
             console.log(response.data)
             dispatch(profileUser(response.data))
         })

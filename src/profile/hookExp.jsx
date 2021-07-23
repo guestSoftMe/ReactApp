@@ -1,4 +1,5 @@
 import React, {useRef, useState} from "react";
+import {PaginatorDemo} from "./paginator";
 
 
 function HooksExp(props) {
@@ -28,6 +29,7 @@ function HooksExp(props) {
                     {JSON.stringify(state,null,2)}
                 </pre>
                 <button onClick={setButtonClick}>Click</button>
+                <PaginatorDemo/>
             </div>
     )
 }
