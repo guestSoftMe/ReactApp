@@ -26,7 +26,6 @@ function User(props){
         for (let i = 1; i <= pages; i++) {
             numbers.push(i)
         }
-
         return (
             <div>
                 <div>
@@ -41,7 +40,7 @@ function User(props){
                         return (
                             item.map(r => {
                                 return <div key={r.key} className={u.block}>
-                                    <NavLink to={'/map/' + r.id}><img src={logouser} style={{width: '50px'}}
+                                    <NavLink to={'/map/' + r.id}><img  src={r.photos.small || logouser} style={{width: '50px'}}
                                                                       alt=""/></NavLink>
                                     <div>Id: {r.id}</div>
                                     <div>Name: {r.name}</div>

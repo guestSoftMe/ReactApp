@@ -1,6 +1,4 @@
 import React, {useRef, useState} from "react";
-import {PaginatorDemo} from "./paginator";
-
 
 function HooksExp(props) {
     const [state, setState] = useState({

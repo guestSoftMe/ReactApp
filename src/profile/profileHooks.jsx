@@ -1,11 +1,19 @@
-import React, { useEffect} from "react";
+import React, {Suspense, useEffect} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {profileUserApi} from "../reduse/reduserSitebar";
 import {userthunkhooks} from "../reduse/reduserHooks";
-import HooksUse from "./hooksuse";
+
+const HooksUse = React.lazy(() => import('./hooksuse'));
 
 
+export const LazyLoading = Component => {
+        return <Suspense fallback={<div>Загрузка...</div>}>
+            {Component }
+        </Suspense>
+};
+
+console.log(LazyLoading(HooksUse))
 const Hooks = (props) => {
     useEffect(() => {
         let userId = props.match.params.userid
@@ -29,7 +37,7 @@ const Hooks = (props) => {
                     </div>
                 }
             </div>
-            <HooksUse {...props}/>
+            {LazyLoading(<HooksUse {...props}/>)}
         </div>
     )
 }
