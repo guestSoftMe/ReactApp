@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "firebase": "^8.8.0",
     "materialize-css": "^1.0.0-rc.2",
     "muicss": "^0.10.3",
     "primeicons": "^4.1.0",

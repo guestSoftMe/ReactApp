@@ -13,13 +13,11 @@ export const LazyLoading = Component => {
         </Suspense>
 };
 
-console.log(LazyLoading(HooksUse))
 const Hooks = (props) => {
     useEffect(() => {
         let userId = props.match.params.userid
         props.userthunkhooks(userId)
     }, [])
-
     return (
         <div>
             <div>
@@ -38,6 +36,7 @@ const Hooks = (props) => {
                 }
             </div>
             {LazyLoading(<HooksUse {...props}/>)}
+
         </div>
     )
 }

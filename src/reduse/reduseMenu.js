@@ -1,9 +1,8 @@
-import axios from "axios";
-
 const initialState = {
     menu: [
         {name: 'User', link: '/user'},
         {name: 'Profile', link: '/map'},
+        {name: 'Upload', link: '/upload'},
     ],
     currentNum: 1,
 }

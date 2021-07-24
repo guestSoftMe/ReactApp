@@ -4,6 +4,7 @@ import Header from "./header/Header";
 import {Route} from "react-router-dom";
 import Registration from "./registration/registration";
 import UserMap from "./profile/profileHooks"
+import UploadFile from "./upload/uploadFile";
 const User = React.lazy(() => import('./user/user'));
 
 let App = () => {
@@ -18,6 +19,7 @@ let App = () => {
                 }/>
                 <Route path={'/registration'} render={() => <Registration/>}/>
                 <Route path={'/map/:userid?'} render={() => <UserMap/>}/>
+                <Route path={'/upload/'} render={() => <UploadFile/>}/>
             </div>
         </div>
     );

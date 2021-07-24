@@ -19,6 +19,8 @@ export function SiteBarRedu(state = initialState, action) {
             }
         case "SETPROFILE":
             return {...state, profile: action.profile}
+        case "SETUPLOADFILE":
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state
     }
@@ -26,6 +28,7 @@ export function SiteBarRedu(state = initialState, action) {
 
 
 export const profileUser = (profile) => ({type: 'SETPROFILE', profile})
+export const uploadFile = (file) => ({type: 'SETUPLOADFILE', file})
 
 const logins = (login, id, email, isAuth) => ({type: 'Login', data: {login, email, id, isAuth}})
 
@@ -74,7 +77,20 @@ export let loginOut = () => (dispatch) => {
 export let profileUserApi = (userId) => (dispatch) => {
     return axlink.get(`/profile/${userId}`)
         .then(response => {
-            console.log(response.data)
             dispatch(profileUser(response.data))
+        })
+}
+export let profileUserPhotoUpload = (file) => (dispatch) => {
+    const formData = new FormData();
+    formData.append(
+        "image",file
+    );
+    return axlink.post(`/profile/photo`,formData,{
+        headers:{
+            'Content-Type':'multipart/form-data'
+        }
+    })
+        .then(response => {
+            dispatch(uploadFile(response.data.data.photos))
         })
 }

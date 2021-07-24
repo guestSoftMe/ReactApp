@@ -26,7 +26,6 @@ export let thunkUser = () => async (dispatch) => {
     dispatch(countpageuser(response.data.totalCount))
 }
 
-
 export let thunkUserPage = (userId) => async (dispatch) => {
     let response = await axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${userId}&count=10`)
     dispatch(userState(response.data.items))
