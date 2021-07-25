@@ -1,6 +1,5 @@
 import React, {useEffect, useMemo, useState} from "react";
 import axios from "axios";
-import HooksExp from "./hookExp";
 import obs from './../circles.svg'
 
 const HooksUse = props => {
@@ -14,7 +13,6 @@ const HooksUse = props => {
 
     return (
         <div style={{margin: '30px 0'}}>
-            <HooksExp {...props}/>
             <div>
                 <button onClick={() => setType('users')}>User</button>
                 <button onClick={() => setType('posts')}>Posts</button>
