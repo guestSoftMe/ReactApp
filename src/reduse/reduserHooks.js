@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const initialState = {
-    profile:null
+    profile:null,
 }
 export function Hooks(state = initialState, action) {
   switch (action.type) {
@@ -24,17 +24,3 @@ export let userthunkhooks = (userId)=>(dispatch)=>{
             dispatch(usersToo(response.data))
         })
 }
-// export let userthunkphotos = (file)=>(dispatch)=>{
-//     const formData = new FormData();
-//     formData.append(
-//         "image",file
-//     );
-//     axios.put(`https://social-network.samuraijs.com/api/1.0/profile/photo`,formData)
-//         .then(response=>{
-//     debugger
-//             if (response.data.resultCode === 0) {
-//                 dispatch(usersPhoto(response.data.photos))
-//             }
-//             console.log(response)
-//         })
-// }

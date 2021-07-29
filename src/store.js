@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {applyMiddleware, combineReducers, compose, createStore} from "redux";
+import React from "react";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {newtest} from "./reduse/reduserUser";
 import thunk from "redux-thunk";
 import {menuAction} from "./reduse/reduseMenu";

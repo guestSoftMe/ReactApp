@@ -3,7 +3,7 @@ import {Regform} from "./regform";
 import r from "./registration.module.css";
 import React, {Component} from "react";
 
-export class FormRegCom extends Component {
+class FormRegCom extends Component {
     render() {
         return (
             <form onSubmit={this.props.handleSubmit}>
@@ -11,8 +11,6 @@ export class FormRegCom extends Component {
                             component={Regform}
                             label={'Email'}
                             name={'email'}
-                    // validate={emails}
-
                 /></div>
                 <div><Field type="password"
                             component={Regform}
