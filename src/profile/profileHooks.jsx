@@ -2,8 +2,7 @@ import React, {Suspense, useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {profileUserApi} from "../reduse/reduserSitebar";
-import {usersPhoto, userthunkhooks} from "../reduse/reduserHooks";
-import axios from "axios";
+import {profileusersupdate, usersfotoupdate, userthunkhooks} from "../reduse/reduserHooks";
 import Meprofile from "./meprofile";
 import CreateForm from "./createprofile";
 
@@ -30,19 +29,10 @@ const Hooks = (props) => {
         formData.append(
             "image", file
         );
-        axios.post(`https://social-network.samuraijs.com/api/1.0//profile/photo`, formData, {
-            withRouter: true,
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-
-        })
-            .then(response => {
-                console.log(response.data)
-            })
+        props.usersfotoupdate(formData)
     }
     let onSubmit=(formdata)=>{
-        console.log(formdata)
+        props.profileusersupdate(formdata)
     }
     return (
         <div>
@@ -50,7 +40,7 @@ const Hooks = (props) => {
                 <Meprofile
                     isAuth={props.isAuth}
                     profile={props.profile}
-                    onclick={onclicks}
+                    onclicks={onclicks}
                     isOwen={props.isOwen}
                     editMode={()=>setState(false)}
                 />
@@ -75,4 +65,4 @@ let mapStateToProps = (state) => {
     }
 }
 let UserMap = withRouter(Hooks)
-export default connect(mapStateToProps, {usersPhoto, profileUserApi, userthunkhooks})(UserMap)
+export default connect(mapStateToProps, {profileusersupdate,usersfotoupdate, profileUserApi, userthunkhooks})(UserMap)

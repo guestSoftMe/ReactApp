@@ -14,7 +14,6 @@ class Maps extends Component {
     componentDidMount() {
         let userId = this.props.match.params.userid
         this.props.profileUserApi(userId)
-        console.log(this.props.profileUserApi(userId))
     }
 
     state = {
@@ -27,7 +26,6 @@ class Maps extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <div>

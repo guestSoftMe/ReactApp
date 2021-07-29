@@ -1,3 +1,75 @@
+PUT https://jsonplaceholder.typicode.com/posts/1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2021-07-29T085305.200.json
+
+###
+
+GET https://jsonplaceholder.typicode.com/posts/1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2021-07-29T085252.200.json
+
+###
+
+GET https://https//social-network.samuraijs.com/api/1.0/profile
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST https://https//social-network.samuraijs.com/api/1.0/profile
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PUT https://https//social-network.samuraijs.com/api/1.0/profile
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PUT https://https//social-network.samuraijs.com/api/1.0/profile
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PUT https://jsonplaceholder.typicode.com/posts/1/
+Accept: */*
+Cache-Control: no-cache
+
+<> 2021-07-29T082657.200.json
+
+###
+
+POST https://jsonplaceholder.typicode.com/posts/1/
+Accept: */*
+Cache-Control: no-cache
+
+<> 2021-07-29T082650.404.json
+
+###
+
+POST https://social-network.samuraijs.com/posts/1/
+Accept: */*
+Cache-Control: no-cache
+
+<> 2021-07-29T082637.404.rt
+
+###
+
+GET https://social-network.samuraijs.com/posts/1/
+Accept: */*
+Cache-Control: no-cache
+
+<> 2021-07-29T082624.404.rt
+
+###
+
 GET https://social-network.samuraijs.com/api/1.0/users
 Accept: */*
 Cache-Control: no-cache
