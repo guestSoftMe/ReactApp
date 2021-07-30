@@ -1,4 +1,5 @@
 import axios from "axios";
+import {stopSubmit} from "redux-form";
 
 const initialState = {
     profile: null,
@@ -27,28 +28,33 @@ export let userthunkhooks = (userId) => (dispatch) => {
             dispatch(usersToo(response.data))
         })
 }
-export let profileusersupdate = (profile) => async (dispatch) => {
-    let response = await axios.put('https://social-network.samuraijs.com/api/1.0/profile/', profile,{
-        withCredentials:true,
-        headers:{
-            'API-KEY':'028b478a-7354-4e18-b9aa-2e8155987680'
+export let profileusersupdate = (profile) => async (dispatch, getState) => {
+    let userid = getState().login.data.id
+    let response = await axios.put('https://social-network.samuraijs.com/api/1.0/profile/', profile, {
+        withCredentials: true,
+        headers: {
+            'API-KEY': '22d5960a-19c5-4d4a-8da9-59844766fddb'
         }
     })
-    if (response.data.resolveCode === 0) {
-        dispatch(profileupdateusers(response.data))
+    if (response.data.resultCode === 0) {
+        dispatch(userthunkhooks(userid))
+    } else {
+        if (response.data.messages) {
+            dispatch(stopSubmit('formprofile', {_error: response.data.messages[0]}))
+        }
     }
 }
 
-export let usersfotoupdate = (formData)=>async (dispatch)=>{
+export let usersfotoupdate = (formData) => async (dispatch) => {
     let response = await axios.put(`https://social-network.samuraijs.com/api/1.0/profile/photo`, formData, {
         withRouter: true,
         headers: {
-            // 'Content-Type': 'multipart/form-data',
-            'API-KEY':'028b478a-7354-4e18-b9aa-2e8155987680'
-        }
+            'Content-Type': 'multipart/form-data',
+            'API-KEY': '028b478a-7354-4e18-b9aa-2e8155987680'
+        },
     })
     if (response.data.resolveCode === 0) {
         dispatch(usersPhoto(response.data))
-    }
 
+    }
 }

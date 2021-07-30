@@ -2,10 +2,15 @@ import React from 'react'
 import logouser from "../600px-User_icon_3.svg.png";
 import {Field, reduxForm} from "redux-form";
 
-const Createprofile = (props) => {
-    let regform = ({type, input, label}) => {
+const Createprofile = (props,error) => {
+    let regform = ({ input, label, type, }) => {
         return (
-            <input type={type} {...input} placeholder={label} {...props}/>
+            <div>
+                <label>{label}</label>
+                <div>
+                    <input {...input} placeholder={label} type={type}/>
+                </div>
+            </div>
         )
     }
     return (
@@ -25,42 +30,36 @@ const Createprofile = (props) => {
                             </div>
                             <div>
                                 <span style={{fontSize: "25px"}}>Профиль</span><span><button>Save</button></span>
-                                <div style={{margin: '10px 0'}}><b>Full name:</b>
-
+                                <div style={{margin: '10px 0'}}>
                                     <Field
                                         component={regform}
                                         type="text"
-                                        placeholder={'Full name'}
-                                        name={'Full name'}
+                                        label={'Full name'}
+                                        name={'fullName'}
                                     /></div>
-                                <div style={{margin: '10px 0'}}><b>Find jobs:</b><label>
+                                <div style={{margin: '10px 0'}}>
                                     <Field
                                         component={regform}
+                                        label={'Yes'}
                                         type="checkbox"
-                                        name={"yes"}
-                                    />Yes</label>
-                                    <label>
-                                        <Field
-                                            component={regform}
-                                            type="checkbox"
-                                            name="no"
-                                        />No</label>
+                                        name={"LookingForAJobDescription"}
+                                    />
                                 </div>
-                                <div style={{margin: '10px 0'}}><b>About for me:</b><br/>
+                                <div style={{margin: '10px 0'}}>
                                     <Field
                                         component={regform}
                                         type="text"
-                                        placeholder={'Textarea'}
-                                        name={'Textarea'}
+                                        label={'About for me'}
+                                        name={'aboutMe'}
                                     />
                                 </div>
                                 {Object.keys(props.profile.contacts).map(i => {
-                                    return <div style={{margin: '10px 0'}}>{i}:
+                                    return <div style={{margin: '10px 0'}}>
                                         <Field
                                             component={regform}
                                             type="text"
-                                            placeholder={'You ' + i}
-                                            name={i}
+                                            label={i}
+                                            name={"contacts."+i}
                                         /></div>
                                 })}
                                 {props.profile.userId === props.isAuth.data.id &&
