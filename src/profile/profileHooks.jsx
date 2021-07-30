@@ -19,7 +19,7 @@ const Hooks = (props) => {
         let userId = props.match.params.userid
         let id = props.isAuth.data.id
         props.userthunkhooks(userId)
-        if (!userId) props.userthunkhooks(18700)
+        if (!userId) props.userthunkhooks(18702)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const [state, setState] = useState(true);
@@ -31,9 +31,10 @@ const Hooks = (props) => {
         );
         props.usersfotoupdate(formData)
     }
-    let onSubmit=(formdata)=>{
-        props.profileusersupdate(formdata)
-        setState(true)
+    let onSubmit = (formdata) => {
+        props.profileusersupdate(formdata).then(() => {
+            setState(true)
+        })
     }
     return (
         <div>
@@ -43,7 +44,7 @@ const Hooks = (props) => {
                     profile={props.profile}
                     onclicks={onclicks}
                     isOwen={props.isOwen}
-                    editMode={()=>setState(false)}
+                    editMode={() => setState(false)}
                 />
                 :
                 <CreateForm
@@ -67,4 +68,4 @@ let mapStateToProps = (state) => {
     }
 }
 let UserMap = withRouter(Hooks)
-export default connect(mapStateToProps, {profileusersupdate,usersfotoupdate, profileUserApi, userthunkhooks})(UserMap)
+export default connect(mapStateToProps, {profileusersupdate, usersfotoupdate, profileUserApi, userthunkhooks})(UserMap)

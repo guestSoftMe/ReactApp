@@ -2,8 +2,8 @@ import React from 'react'
 import logouser from "../600px-User_icon_3.svg.png";
 import {Field, reduxForm} from "redux-form";
 
-const Createprofile = (props,error) => {
-    let regform = ({ input, label, type, }) => {
+const Createprofile = (props) => {
+    let regform = ({ input, label, type}) => {
         return (
             <div>
                 <label>{label}</label>
@@ -13,6 +13,7 @@ const Createprofile = (props,error) => {
             </div>
         )
     }
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div style={{
@@ -29,9 +30,15 @@ const Createprofile = (props,error) => {
                                 <img style={{width: '100px'}} src={props.profile.photos.small || logouser} alt=""/>
                             </div>
                             <div>
-
                                 <span style={{fontSize: "25px"}}>Профиль</span><span><button>Save</button></span>
                                 <div style={{margin: '10px 0'}}>
+
+                                    {props.error && <span style={{
+                                        border:'2px solid red',
+                                        color:'red',
+                                        fontSize:'12px'
+                                    }}>{props.error}</span>}
+
                                     <Field
                                         component={regform}
                                         type="text"
@@ -54,6 +61,8 @@ const Createprofile = (props,error) => {
                                         name={'aboutMe'}
                                     />
                                 </div>
+                                <div>
+                                    Contacts:
                                 {Object.keys(props.profile.contacts).map(i => {
                                     return <div style={{margin: '10px 0'}}>
                                         <Field
@@ -63,6 +72,7 @@ const Createprofile = (props,error) => {
                                             name={"contacts."+i}
                                         /></div>
                                 })}
+                                </div>
                                 {props.profile.userId === props.isAuth.data.id &&
                                 <Field component={regform} type="file" id={'inputFile'} onChange={props.onclicks}/>
                                 }

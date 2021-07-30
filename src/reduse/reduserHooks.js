@@ -33,14 +33,15 @@ export let profileusersupdate = (profile) => async (dispatch, getState) => {
     let response = await axios.put('https://social-network.samuraijs.com/api/1.0/profile/', profile, {
         withCredentials: true,
         headers: {
-            'API-KEY': '22d5960a-19c5-4d4a-8da9-59844766fddb'
+            'API-KEY': '86f314fe-5962-417c-873c-759c47f7eaf2'
         }
     })
     if (response.data.resultCode === 0) {
         dispatch(userthunkhooks(userid))
     } else {
         if (response.data.messages) {
-            dispatch(stopSubmit('formprofile', {_error: response.data.messages[0]}))
+            dispatch(stopSubmit('formprofile', {_error:response.data.messages}))
+            return Promise.reject(response.data.messages)
         }
     }
 }
@@ -50,10 +51,10 @@ export let usersfotoupdate = (formData) => async (dispatch) => {
         withRouter: true,
         headers: {
             'Content-Type': 'multipart/form-data',
-            'API-KEY': '028b478a-7354-4e18-b9aa-2e8155987680'
+            'API-KEY': '22d5960a-19c5-4d4a-8da9-59844766fddb'
         },
     })
-    if (response.data.resolveCode === 0) {
+    if (response.data.resultCode === 0) {
         dispatch(usersPhoto(response.data))
 
     }
