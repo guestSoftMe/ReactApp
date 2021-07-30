@@ -19,7 +19,7 @@ const Hooks = (props) => {
         let userId = props.match.params.userid
         let id = props.isAuth.data.id
         props.userthunkhooks(userId)
-        if (!userId) props.userthunkhooks(18702)
+        if (!userId) props.userthunkhooks(18708)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const [state, setState] = useState(true);
@@ -32,7 +32,7 @@ const Hooks = (props) => {
         props.usersfotoupdate(formData)
     }
     let onSubmit = (formdata) => {
-        props.profileusersupdate(formdata).then(() => {
+        props.profileusersupdate(formdata).then(()=>{
             setState(true)
         })
     }

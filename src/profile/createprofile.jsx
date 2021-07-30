@@ -30,7 +30,6 @@ const Createprofile = (props) => {
                                 <img style={{width: '100px'}} src={props.profile.photos.small || logouser} alt=""/>
                             </div>
                             <div>
-
                                 <span style={{fontSize: "25px"}}>Профиль</span><span><button>Save</button></span>
                                 <div style={{margin: '10px 0'}}>
 
@@ -64,15 +63,15 @@ const Createprofile = (props) => {
                                 </div>
                                 <div>
                                     Contacts:
-                                {Object.keys(props.profile.contacts).map(i => {
-                                    return <div style={{margin: '10px 0'}}>
-                                        <Field
-                                            component={regform}
-                                            type="text"
-                                            label={i}
-                                            name={"contacts."+i}
-                                        /></div>
-                                })}
+                                    {Object.keys(props.profile.contacts).map(i => {
+                                        return <div style={{margin: '10px 0'}}>
+                                            <Field
+                                                component={regform}
+                                                type="text"
+                                                label={i}
+                                                name={"contacts."+i}
+                                            /></div>
+                                    })}
                                 </div>
                                 {props.profile.userId === props.isAuth.data.id &&
                                 <Field component={regform} type="file" id={'inputFile'} onChange={props.onclicks}/>

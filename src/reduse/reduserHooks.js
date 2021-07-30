@@ -33,7 +33,7 @@ export let profileusersupdate = (profile) => async (dispatch, getState) => {
     let response = await axios.put('https://social-network.samuraijs.com/api/1.0/profile/', profile, {
         withCredentials: true,
         headers: {
-            'API-KEY': '86f314fe-5962-417c-873c-759c47f7eaf2'
+            'API-KEY': 'a0cf50fb-66d3-4fa2-b075-a23e6b15f283'
         }
     })
     if (response.data.resultCode === 0) {
