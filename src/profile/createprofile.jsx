@@ -30,6 +30,7 @@ const Createprofile = (props) => {
                                 <img style={{width: '100px'}} src={props.profile.photos.small || logouser} alt=""/>
                             </div>
                             <div>
+
                                 <span style={{fontSize: "25px"}}>Профиль</span><span><button>Save</button></span>
                                 <div style={{margin: '10px 0'}}>
 
