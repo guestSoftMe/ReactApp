@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import r from './registration.module.css'
-import {FormReg} from "./formReg";
+import FormReg from "./formReg";
 import {connect} from "react-redux";
 import {loginFormPost} from "../reduse/reduserSitebar";
 import {Redirect} from "react-router-dom";
@@ -9,7 +9,8 @@ import {selectorLogin} from "../selector/selector";
 
 export class Registration extends Component {
     onSubmit=(data)=>{
-        this.props.loginFormPost(data.email,data.password)
+        this.props.loginFormPost(data.email,data.password,data.rememberMe,data.captcha)
+        console.log(data)
      }
     render() {
         if (this.props.login.data.isAuth) {

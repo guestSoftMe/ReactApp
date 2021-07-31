@@ -6,7 +6,8 @@ const initialState = {
         login: null,
         email: null,
         id: null,
-        isAuth: false
+        isAuth: false,
+        captcha: null
     },
     profile: null,
 }
@@ -19,8 +20,8 @@ export function SiteBarRedu(state = initialState, action) {
             }
         case "SETPROFILE":
             return {...state, profile: action.profile}
-        case "SETUPLOADFILE":
-            return {...state, profile: {...state.profile, photos: action.photos}}
+        case "SETUPLOADCAPTCHA":
+            return {...state, data:{...state.data,captcha:action.captcha}}
         default:
             return state
     }
@@ -28,7 +29,7 @@ export function SiteBarRedu(state = initialState, action) {
 
 
 export const profileUser = (profile) => ({type: 'SETPROFILE', profile})
-export const uploadFile = (file) => ({type: 'SETUPLOADFILE', file})
+export const uploadCaptcha = (captcha) => ({type: 'SETUPLOADCAPTCHA', captcha})
 
 const logins = (login, id, email, isAuth) => ({type: 'Login', data: {login, email, id, isAuth}})
 
@@ -48,18 +49,19 @@ export let loginsthunk = () => (dispatch) => {
         })
 }
 
-export let loginFormPost = (email, password, rememberMe) => (dispatch) => {
+export let loginFormPost = (email, password, rememberMe,captcha) => (dispatch) => {
     axlink.post('/auth/login',
         {
-            email, password, rememberMe
+            email, password, rememberMe,captcha
         })
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(loginsthunk())
             } else {
-                if (response.data.messages) {
-                    dispatch(stopSubmit('Registr', {_error: response.data.messages}))
+                if (response.data.resultCode === 10){
+                    dispatch(profileUserCaptcha())
                 }
+                    dispatch(stopSubmit('Registr', {_error: response.data.messages}))
             }
         })
 }
@@ -80,17 +82,9 @@ export let profileUserApi = (userId) => (dispatch) => {
             dispatch(profileUser(response.data))
         })
 }
-export let profileUserPhotoUpload = (file) => (dispatch) => {
-    const formData = new FormData();
-    formData.append(
-        "image",file
-    );
-    return axlink.post(`/profile/photo`,formData,{
-        headers:{
-            'Content-Type':'multipart/form-data'
-        }
-    })
+export let profileUserCaptcha = () => (dispatch) => {
+    return axlink.post(`/security/get-captcha-url`)
         .then(response => {
-            dispatch(uploadFile(response.data.data.photos))
+            dispatch(uploadCaptcha(response.data.url))
         })
 }

@@ -1,3 +1,19 @@
+GET https://social-network.samuraijs.com/security/get-captcha-url
+Accept: */*
+Cache-Control: no-cache
+
+<> 2021-07-31T030456.404.rt
+
+###
+
+GET https://social-network.samuraijs.com/security/get-captcha-url
+Accept: */*
+Cache-Control: no-cache
+
+<> 2021-07-31T030431.404.rt
+
+###
+
 PUT https://social-network.samuraijs.com/api/1.0/profile/
 Accept: */*
 Cache-Control: no-cache

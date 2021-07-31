@@ -1,42 +1,30 @@
-import React, {useEffect, useState} from "react";
-import {appfirebase} from "../firebase/base";
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
+import {profileUserCaptcha} from "../reduse/reduserSitebar";
 
-const db = appfirebase.firestore()
 
 const UploadFile = (props) => {
-    const [fileUrl, setFileUrl] = useState(null)
-    const [users, setUsers] = useState([])
-    const handler = (event) => {
-        event.preventDefault()
-    }
-    const onchangefile = async (event) => {
-        const file = event.target.files[0]
-        const storegRef = appfirebase.storage().ref()
-        const fileRef = storegRef.child(file.name)
-        await fileRef.put(file)
-        setFileUrl(await fileRef.getDownloadURL())
 
-    }
-
-    useEffect(() => {
-        const fetchUsers = async ()=>{
-            const usersCollection = await db.collection('users').get()
-            setUsers(usersCollection.docs.map(doc=>{
-                return doc.data
-            }))
-        }
-        fetchUsers()
-    }, []);
-
-
+    useEffect(()=>{
+        props.profileUserCaptcha()
+    },[])
+    console.log(props)
     return (
-        <>
-            <form onSubmit={handler}>
-                <input type="file" onChange={onchangefile}/>
-                <button>Submit</button>
-            </form>
-        </>
+        <div>
+            { props.captcha ?
+                <img src={props.captcha} alt=""/>
+                : 'Not captcha'
+            }
+
+        </div>
     )
 
 }
-export default UploadFile
+
+const mapStateToProps=(state)=>{
+    return{
+        captcha:state.login.captcha
+    }
+}
+
+export default connect(mapStateToProps,{profileUserCaptcha})(UploadFile)
