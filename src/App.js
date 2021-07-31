@@ -12,6 +12,7 @@ let App = () => {
         <div className='container'>
             <Header/>
             <div className='content'>
+                <Route exact path='/' render={()=><Registration/>}/>
                 <Route path='/user' render={() =>
                     <Suspense fallback={<div>Загрузка...</div>}>
                         <User/>
