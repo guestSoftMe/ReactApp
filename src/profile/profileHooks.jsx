@@ -2,7 +2,7 @@ import React, {Suspense, useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {profileUserApi} from "../reduse/reduserSitebar";
-import {profileusersupdate, usersfotoupdate, userthunkhooks} from "../reduse/reduserHooks";
+import {profileusersupdate, userthunkhooks} from "../reduse/reduserHooks";
 import Meprofile from "./meprofile";
 import CreateForm from "./createprofile";
 
@@ -29,7 +29,6 @@ const Hooks = (props) => {
         formData.append(
             "image", file
         );
-        props.usersfotoupdate(formData)
     }
     let onSubmit = (formdata) => {
         props.profileusersupdate(formdata).then(()=>{
@@ -68,4 +67,4 @@ let mapStateToProps = (state) => {
     }
 }
 let UserMap = withRouter(Hooks)
-export default connect(mapStateToProps, {profileusersupdate, usersfotoupdate, profileUserApi, userthunkhooks})(UserMap)
+export default connect(mapStateToProps, {profileusersupdate, profileUserApi, userthunkhooks})(UserMap)

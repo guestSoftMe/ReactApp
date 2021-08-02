@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Suspense} from "react";
 import Header from "./header/Header";
-import {Route} from "react-router-dom";
+import {Redirect, Route,Switch} from "react-router-dom";
 import Registration from "./registration/registration";
 import UserMap from "./profile/profileHooks"
 import UploadFile from "./upload/uploadFile";
@@ -12,7 +12,8 @@ let App = () => {
         <div className='container'>
             <Header/>
             <div className='content'>
-                <Route exact path='/' render={()=><Registration/>}/>
+                <Switch>
+                <Route exact path='/' render={()=><Redirect to={'/map/'}/>}/>
                 <Route path='/user' render={() =>
                     <Suspense fallback={<div>Загрузка...</div>}>
                         <User/>
@@ -20,9 +21,12 @@ let App = () => {
                 }/>
                 <Route path={'/registration'} render={() => <Registration/>}/>
                 <Route path={'/map/:userid?'} render={() => <UserMap/>}/>
-                <Route path={'/upload/'} render={() => <UploadFile/>}/>
+                <Route  path={'/upload/'} render={() => <UploadFile/>}/>
+                <Route  path='*' render={() => <div>404 page not found</div>}/>
+                </Switch>
             </div>
         </div>
     );
 }
 export default App
+

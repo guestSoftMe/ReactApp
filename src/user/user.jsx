@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {thunkUser, thunkUserPage} from "../reduse/reduserUser";
 import u from './user.module.css'
 import classNames from "classnames";
-import {curnum} from "../reduse/reduseMenu";
+import {curnumNum} from "../reduse/reduseMenu";
 import logouser from "./../600px-User_icon_3.svg.png"
 import {NavLink} from "react-router-dom";
 import loading from "../circles.svg"
@@ -18,7 +18,7 @@ function User(props){
 
 
     function onClickPage(num){
-        props.thunkUserPage(props.curnum(num).currentNum)
+        props.thunkUserPage(props.curnumNum(num).currentNum)
     }
 
         let numbers = []
@@ -63,4 +63,4 @@ let mapStateToProps = (state) => {
         isAuth: state.login.data.isAuth
     }
 }
-export default connect(mapStateToProps, {thunkUserPage, curnum, thunkUser})(User)
+export default connect(mapStateToProps, {thunkUserPage, curnumNum, thunkUser})(User)

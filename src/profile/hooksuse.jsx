@@ -10,7 +10,7 @@ const HooksUse = props => {
         let response = await axios.get(`https://jsonplaceholder.typicode.com/${type}`)
                 setType(response)
     }, [type]);
-
+    console.log(props)
     return (
         <div style={{margin: '30px 0'}}>
             <div>
