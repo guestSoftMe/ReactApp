@@ -9,7 +9,6 @@ const initialState = {
     menu: [
         {name: 'User', link: '/user'},
         {name: 'Profile', link: '/map'},
-        {name: 'Upload', link: '/upload'},
     ] as Array <Arrayname>,
     currentNum: 1,
 }

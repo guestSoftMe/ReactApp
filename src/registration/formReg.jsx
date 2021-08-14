@@ -67,4 +67,3 @@ let FormReg = reduxForm({
     form: 'Registr'
 })(FormRegCom)
 export default connect(mapStateToProps, {profileUserCaptcha})(FormReg)
-

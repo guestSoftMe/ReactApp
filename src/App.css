@@ -1,16 +1,17 @@
-body{
+#root{
     background-color: #282c34;
 }
 .container{
     width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-rows: 1fr 100%;
-    grid-template-columns: 50px 10fr;
+    /*grid-template-rows: 1fr 100%;*/
+    /*grid-template-columns: 10px 10fr;*/
     grid-template-areas:
             'h h'
             'c c';
     grid-gap: 10px;
+    background-color: #282c34;
 }
 .content{
     color: #fff;

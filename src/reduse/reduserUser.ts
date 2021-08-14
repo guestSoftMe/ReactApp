@@ -2,9 +2,16 @@ import axios from "axios";
 
 const USER_STATE = 'USER-STATE'
 const COUNT_PAGE ='COUNT-PAGE'
+type userType={
+    id:number
+    name: string
+    status: string
+    photos:string
+    followed:boolean
+}
 
 interface initialStateType {
-    users: Array<number|string>,
+    users: Array<userType>,
     isTrue: boolean,
     countpage:number
 }
@@ -47,4 +54,5 @@ export let thunkUser = () => async (dispatch:any) => {
 export let thunkUserPage = (userId:number) => async (dispatch:any) => {
     let response = await axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${userId}&count=10`)
     dispatch(userState(response.data.items))
+    console.log(response.data.items)
 }
